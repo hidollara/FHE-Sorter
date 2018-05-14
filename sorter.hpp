@@ -13,15 +13,29 @@ template <class T>
 class Sorter {
     Comparator<T> *comparator;
 public:
-    std::pair<T, T> compare(T x, T y);
     Sorter(Comparator<T> *c) : comparator(c) {};
+    void compare(
+            typename std::vector<T>::iterator x,
+            typename std::vector<T>::iterator y,
+            bool asc = true);
     virtual void sort(
-            typename std::vector<T>::iterator begin,
-            typename std::vector<T>::iterator end,
+            typename std::vector<T>::iterator first,
+            typename std::vector<T>::iterator last,
             bool asc = true) = 0;
 };
 
 template <class T>
-std::pair<T, T> Sorter<T>::compare(T x, T y) {
-    return this->comparator->compare(x, y);
+void Sorter<T>::compare(
+        typename std::vector<T>::iterator x,
+        typename std::vector<T>::iterator y,
+        bool asc) {
+    auto p = this->comparator->compare(*x, *y);
+
+    if (asc) {
+        *x = p.first;
+        *y = p.second;
+    } else {
+        *x = p.second;
+        *y = p.first;
+    }
 }

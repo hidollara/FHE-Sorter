@@ -7,55 +7,49 @@ template <class T>
 class BitonicSorter : public Sorter<T> {
 private:
     void merge(
-            typename std::vector<T>::iterator begin,
-            typename std::vector<T>::iterator end,
+            typename std::vector<T>::iterator first,
+            typename std::vector<T>::iterator last,
             bool asc);
 public:
     BitonicSorter(Comparator<T> *c) : Sorter<T>(c) {};
     void sort(
-            typename std::vector<T>::iterator begin,
-            typename std::vector<T>::iterator end,
+            typename std::vector<T>::iterator first,
+            typename std::vector<T>::iterator last,
             bool asc);
 };
 
 template <class T>
 void BitonicSorter<T>::merge(
-        typename std::vector<T>::iterator begin,
-        typename std::vector<T>::iterator end,
+        typename std::vector<T>::iterator first,
+        typename std::vector<T>::iterator last,
         bool asc) {
-    if (end - begin <= 1) return;
+    int len = last - first;
+    if (len <= 1) return;
 
-    int n = end - begin, k = 1;
-    while ((k << 1) < n) k <<= 1;
+    int k = 1;
+    while ((k << 1) < len) k <<= 1;
 
-    for (auto itr = begin; itr + k != end; itr++) {
-        auto p = this->compare(*itr, *(itr + k));
-        if (asc) {
-            *itr = p.first;
-            *(itr + k) = p.second;
-        } else {
-            *itr = p.second;
-            *(itr + k) = p.first;
-        }
+    for (auto itr = first; itr + k != last; itr++) {
+        this->compare(itr, itr + k, asc);
     }
-    this->merge(begin, begin + k, asc);
-    this->merge(begin + k, end, asc);
+    this->merge(first, first + k, asc);
+    this->merge(first + k, last, asc);
 
     return;
 }
 
 template <class T>
 void BitonicSorter<T>::sort(
-        typename std::vector<T>::iterator begin,
-        typename std::vector<T>::iterator end,
+        typename std::vector<T>::iterator first,
+        typename std::vector<T>::iterator last,
         bool asc) {
-    if (end - begin <= 1) return;
+    int len = last - first;
+    if (len <= 1) return;
 
-    int n = (end - begin) / 2;
-
-    this->sort(begin, begin + n, !asc);
-    this->sort(begin + n, end, asc);
-    this->merge(begin, end, asc);
+    int n = len / 2;
+    this->sort(first, first + n, !asc);
+    this->sort(first + n, last, asc);
+    this->merge(first, last, asc);
 
     return;
 }

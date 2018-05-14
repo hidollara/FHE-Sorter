@@ -7,61 +7,47 @@ template <class T>
 class OddEvenSorter : public Sorter<T> {
 private:
     void merge(
-            typename std::vector<T>::iterator begin,
-            typename std::vector<T>::iterator end,
+            typename std::vector<T>::iterator first,
+            typename std::vector<T>::iterator last,
             int r,
             bool asc);
 public:
     OddEvenSorter(Comparator<T> *c) : Sorter<T>(c) {};
     void sort(
-            typename std::vector<T>::iterator begin,
-            typename std::vector<T>::iterator end,
+            typename std::vector<T>::iterator first,
+            typename std::vector<T>::iterator last,
             bool asc);
 };
 
 template <class T>
 void OddEvenSorter<T>::merge(
-        typename std::vector<T>::iterator begin,
-        typename std::vector<T>::iterator end,
+        typename std::vector<T>::iterator first,
+        typename std::vector<T>::iterator last,
         int r,
         bool asc) {
-    int n = end - begin, m = r * 2;
+    int n = last - first, m = r * 2;
     if (m < n) {
-        merge(begin, end, m, asc);
-        merge(begin + r, end, m, asc);
+        merge(first, last, m, asc);
+        merge(first + r, last, m, asc);
 
-        for (auto itr = begin + r; itr + r < end; itr += m) {
-            auto p = this->compare(*itr, *(itr + r));
-            if (asc) {
-                *itr = p.first;
-                *(itr + r) = p.second;
-            } else {
-                *itr = p.second;
-                *(itr + r) = p.first;
-            }
+        for (auto itr = first + r; itr + r < last; itr += m) {
+            this->compare(itr, itr + r, asc);
         }
     } else {
-        auto p = this->compare(*begin, *(begin + r));
-        if (asc) {
-            *begin = p.first;
-            *(begin + r) = p.second;
-        } else {
-            *begin = p.second;
-            *(begin + r) = p.first;
-        }
+        this->compare(first, first + r);
     }
 }
 
 template <class T>
 void OddEvenSorter<T>::sort(
-        typename std::vector<T>::iterator begin,
-        typename std::vector<T>::iterator end,
+        typename std::vector<T>::iterator first,
+        typename std::vector<T>::iterator last,
         bool asc) {
-    int n = end - begin;
+    int n = last - first;
     if (n > 1) {
         int m = n / 2;
-        this->sort(begin, begin + m, asc);
-        this->sort(begin + m, end, asc);
-        this->merge(begin, end, 1, asc);
+        this->sort(first, first + m, asc);
+        this->sort(first + m, last, asc);
+        this->merge(first, last, 1, asc);
     }
 }
