@@ -23,13 +23,11 @@ void BitonicSorter<T>::merge(
         typename std::vector<T>::iterator first,
         typename std::vector<T>::iterator last,
         bool asc) {
-    int len = last - first;
-    if (len <= 1) return;
+    if (!need_sort<T>(first, last)) return;
 
-    int k = 1;
-    while ((k << 1) < len) k <<= 1;
+    int k = 1; while ((k << 1) < last - first) k <<= 1;
 
-    for (auto itr = first; itr + k != last; itr++) {
+    for (auto itr = first; itr + k < last; itr++) {
         this->compare(itr, itr + k, asc);
     }
     this->merge(first, first + k, asc);
@@ -43,12 +41,11 @@ void BitonicSorter<T>::sort(
         typename std::vector<T>::iterator first,
         typename std::vector<T>::iterator last,
         bool asc) {
-    int len = last - first;
-    if (len <= 1) return;
+    if (!need_sort<T>(first, last)) return;
 
-    int n = len / 2;
-    this->sort(first, first + n, !asc);
-    this->sort(first + n, last, asc);
+    auto mid = first + ((last - first) / 2);
+    this->sort(first, mid, !asc);
+    this->sort(mid, last, asc);
     this->merge(first, last, asc);
 
     return;

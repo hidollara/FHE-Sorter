@@ -39,3 +39,10 @@ void Sorter<T>::compare(
         *y = p.first;
     }
 }
+
+template <class T>
+bool need_sort(
+        typename std::vector<T>::iterator first,
+        typename std::vector<T>::iterator last) {
+    return last - first >= 2;
+}
