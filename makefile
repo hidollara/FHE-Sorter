@@ -2,7 +2,7 @@ CXX = g++
 CXXFLAGS = -O2 -std=c++11
 FHECXXFLAGS = $(CXXFLAGS) -pthread -DFHE_THREADS -DFHE_BOOT_THREADS
 SORTERSRCS = main.cpp intcomp.cpp
-FHESRCS = fhe.cpp Helib/src/fhe.a
+FHESRCS = encrypter.cpp Helib/src/fhe.a
 
 sorter: $(SORTERSRCS)
 	$(CXX) $(CXXFLAGS) -o $@ $(SORTERSRCS)
