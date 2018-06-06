@@ -8,8 +8,9 @@ class Encrypter {
 public:
     const FHEPubKey& publicKey;
     Encrypter(
-        long p = 1021, long r = 1,
-        long L = 16, long c = 3, long w = 64, long d = 0, long k = 128, long s = 0);
+        long p = 2, long r = 1,
+        long L = 16, long c = 2, long w = 64, long d = 1, long k = 0, long s = 0);
+    Encrypter(const Encrypter &e);
     ZZX getG();
     Ctxt encrypt(int p);
     NTL::ZZ decrypt(Ctxt ct);
