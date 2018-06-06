@@ -6,7 +6,7 @@
 template <class T>
 class Comparator {
 public:
-    virtual std::pair<T, T> compare(T x, T y) = 0;
+    virtual std::pair<T, T> compare(const T &x, const T &y) = 0;
 };
 
 template <class T>
