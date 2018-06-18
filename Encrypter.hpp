@@ -13,5 +13,5 @@ public:
     const FHEcontext& getContext() const;
     const ZZX getG() const;
     Ctxt encrypt(int p) const;
-    NTL::ZZ decrypt(Ctxt ct) const;
+    ZZX decrypt(Ctxt ct) const;
 };

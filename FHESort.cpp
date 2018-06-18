@@ -14,12 +14,12 @@ void run(Sorter<Ctxt> *s) {
         e.encrypt(0),
     };
 
-    for (auto x : v) std::cout << e.decrypt(x) << ' ';
+    for (auto x : v) std::cout << e.decrypt(x)[0] << ' ';
     std::cout << std::endl;
 
     s->sort(v.begin(), v.end());
 
-    for (auto x : v) std::cout << e.decrypt(x) << ' ';
+    for (auto x : v) std::cout << e.decrypt(x)[0] << ' ';
     std::cout << std::endl;
 }
 
@@ -29,13 +29,9 @@ int main() {
 
     s = new BitonicSorter<Ctxt>(c);
     run(s);
-    delete s;
 
     s = new OddEvenSorter<Ctxt>(c);
     run(s);
-    delete s;
-
-    delete c;
 
     return 0;
 }
