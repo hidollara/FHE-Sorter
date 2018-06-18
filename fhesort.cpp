@@ -29,10 +29,13 @@ int main() {
 
     s = new BitonicSorter<Ctxt>(c);
     run(s);
+    delete s;
 
     s = new OddEvenSorter<Ctxt>(c);
     run(s);
+    delete s;
+
+    delete c;
 
     return 0;
 }
-

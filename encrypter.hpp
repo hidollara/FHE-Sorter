@@ -11,8 +11,7 @@ public:
         long p = 2, long r = 1,
         long L = 16, long c = 2, long w = 64, long d = 1, long k = 0, long s = 0);
     Encrypter(const Encrypter &e);
-    ZZX getG();
-    Ctxt encrypt(int p);
-    NTL::ZZ decrypt(Ctxt ct);
+    ZZX getG() const;
+    Ctxt encrypt(int p) const;
+    NTL::ZZ decrypt(Ctxt ct) const;
 };
-

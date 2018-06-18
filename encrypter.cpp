@@ -10,22 +10,17 @@ Encrypter::Encrypter(
     secretKey.GenSecKey(w);
 }
 
-Encrypter::Encrypter(const Encrypter &e) :
-    context(e.context),
-    secretKey(e.secretKey),
-    publicKey(e.publicKey) {}
-
-ZZX Encrypter::getG() {
+ZZX Encrypter::getG() const {
     return context.alMod.getFactorsOverZZ()[0];
 }
 
-Ctxt Encrypter::encrypt(int p) {
+Ctxt Encrypter::encrypt(int p) const {
     Ctxt ctx(publicKey);
     publicKey.Encrypt(ctx, to_ZZX(p));
     return ctx;
 }
 
-NTL::ZZ Encrypter::decrypt(Ctxt ct) {
+NTL::ZZ Encrypter::decrypt(Ctxt ct) const {
     ZZX pt;
     secretKey.Decrypt(pt, ct);
     return pt[0];

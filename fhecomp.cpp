@@ -1,6 +1,6 @@
 #include "fhecomp.hpp"
 
-std::pair<Ctxt, Ctxt> FHEComparator::compare(const Ctxt &a, const Ctxt &b) {
+std::pair<Ctxt, Ctxt> FHEComparator::compare(const Ctxt &a, const Ctxt &b) const {
     // eq := a ^ b ^ 1 = a + b + 1 (mod 2)
     // Ctxt eq = a; eq += b; eq.addConstant(to_ZZ(1));
 
@@ -19,5 +19,5 @@ std::pair<Ctxt, Ctxt> FHEComparator::compare(const Ctxt &a, const Ctxt &b) {
     ge_then_a.multiplyBy(a);
     ge_then_b.multiplyBy(b);
 
-    return make_pair(lt_then_a += ge_then_b, lt_then_b += ge_then_a);
+    return std::make_pair(lt_then_a += ge_then_b, lt_then_b += ge_then_a);
 }
