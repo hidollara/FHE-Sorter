@@ -19,5 +19,5 @@ std::pair<Ctxt, Ctxt> FHEComparator::compare(const Ctxt &a, const Ctxt &b) const
     ge_then_a.multiplyBy(a);
     ge_then_b.multiplyBy(b);
 
-    return make_pair(lt_then_a += ge_then_b, lt_then_b += ge_then_a);
+    return std::make_pair(lt_then_a += ge_then_b, lt_then_b += ge_then_a);
 }
