@@ -5,8 +5,8 @@
 #include "sorter.hpp"
 
 class FHEComparator : public Comparator<Ctxt> {
-    Encrypter encrypter;
+    const Encrypter &encrypter;
 public:
-    FHEComparator(Encrypter e) : Comparator<Ctxt>(), encrypter(e) {}
+    FHEComparator(const Encrypter &e) : Comparator<Ctxt>(), encrypter(e) {}
     std::pair<Ctxt, Ctxt> compare(const Ctxt &a, const Ctxt &b) const;
 };
