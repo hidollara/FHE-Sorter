@@ -10,7 +10,11 @@ Encrypter::Encrypter(
     secretKey.GenSecKey(w);
 }
 
-ZZX Encrypter::getG() const {
+const FHEcontext& Encrypter::getContext() const {
+    return context;
+}
+
+const ZZX Encrypter::getG() const {
     return context.alMod.getFactorsOverZZ()[0];
 }
 
