@@ -4,6 +4,9 @@
 #include <utility>
 
 template <class T>
+using v_itr = typename std::vector<T>::iterator;
+
+template <class T>
 class Comparator {
 public:
     virtual std::pair<T, T> compare(const T &x, const T &y) = 0;
@@ -14,21 +17,12 @@ class Sorter {
     Comparator<T> *comparator;
 public:
     Sorter(Comparator<T> *c) : comparator(c) {};
-    void compare(
-            typename std::vector<T>::iterator x,
-            typename std::vector<T>::iterator y,
-            bool asc = true);
-    virtual void sort(
-            typename std::vector<T>::iterator first,
-            typename std::vector<T>::iterator last,
-            bool asc = true) = 0;
+    void compare(v_itr<T> x, v_itr<T> y, bool asc = true);
+    virtual void sort(v_itr<T> first, v_itr<T> last, bool asc = true) = 0;
 };
 
 template <class T>
-void Sorter<T>::compare(
-        typename std::vector<T>::iterator x,
-        typename std::vector<T>::iterator y,
-        bool asc) {
+void Sorter<T>::compare(v_itr<T> x, v_itr<T> y, bool asc) {
     auto p = this->comparator->compare(*x, *y);
 
     if (asc) {
@@ -41,8 +35,6 @@ void Sorter<T>::compare(
 }
 
 template <class T>
-bool need_sort(
-        typename std::vector<T>::iterator first,
-        typename std::vector<T>::iterator last) {
+bool need_sort(v_itr<T> first, v_itr<T> last) {
     return last - first >= 2;
 }

@@ -7,21 +7,21 @@ template <class T>
 class BitonicSorter : public Sorter<T> {
 private:
     void merge(
-            typename std::vector<T>::iterator first,
-            typename std::vector<T>::iterator last,
+            v_itr<T> first,
+            v_itr<T> last,
             bool asc);
 public:
     BitonicSorter(Comparator<T> *c) : Sorter<T>(c) {};
     void sort(
-            typename std::vector<T>::iterator first,
-            typename std::vector<T>::iterator last,
+            v_itr<T> first,
+            v_itr<T> last,
             bool asc);
 };
 
 template <class T>
 void BitonicSorter<T>::merge(
-        typename std::vector<T>::iterator first,
-        typename std::vector<T>::iterator last,
+        v_itr<T> first,
+        v_itr<T> last,
         bool asc) {
     if (!need_sort<T>(first, last)) return;
 
@@ -38,8 +38,8 @@ void BitonicSorter<T>::merge(
 
 template <class T>
 void BitonicSorter<T>::sort(
-        typename std::vector<T>::iterator first,
-        typename std::vector<T>::iterator last,
+        v_itr<T> first,
+        v_itr<T> last,
         bool asc) {
     if (!need_sort<T>(first, last)) return;
 
