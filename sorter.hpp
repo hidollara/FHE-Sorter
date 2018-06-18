@@ -19,12 +19,12 @@ class Sorter {
 public:
     virtual ~Sorter() {};
     Sorter(const Comparator<T> *c) : comparator(c) {};
-    void compare(v_itr<T> x, v_itr<T> y, bool asc = true);
-    virtual void sort(v_itr<T> first, v_itr<T> last, bool asc = true) = 0;
+    void compare(v_itr<T> x, v_itr<T> y, bool asc = true) const;
+    virtual void sort(v_itr<T> first, v_itr<T> last, bool asc = true) const = 0;
 };
 
 template <class T>
-void Sorter<T>::compare(v_itr<T> x, v_itr<T> y, bool asc) {
+void Sorter<T>::compare(v_itr<T> x, v_itr<T> y, bool asc) const {
     auto p = this->comparator->compare(*x, *y);
 
     if (asc) {
@@ -37,6 +37,6 @@ void Sorter<T>::compare(v_itr<T> x, v_itr<T> y, bool asc) {
 }
 
 template <class T>
-bool need_sort(v_itr<T> first, v_itr<T> last) {
+bool need_sort(const v_itr<T> first, const v_itr<T> last) {
     return last - first >= 2;
 }
