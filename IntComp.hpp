@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sorter.hpp"
+#include "Sorter.hpp"
 
 class IntComparator : public Comparator<int> {
 public:

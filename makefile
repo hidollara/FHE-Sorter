@@ -1,18 +1,18 @@
 CXX = g++
 CXXFLAGS = -O2 -std=c++11
 FHECXXFLAGS = $(CXXFLAGS) -pthread -DFHE_THREADS -DFHE_BOOT_THREADS
-FHESRCS = encrypter.cpp Helib/src/fhe.a
-FHESORTSRCS = fhesort.cpp fhecomp.cpp $(FHESRCS)
-FHETESTSRCS = fhetest.cpp $(FHESRCS)
-INTSORTSRCS = intsort.cpp intcomp.cpp
+FHESRCS = Helib/src/fhe.a Encrypter.cpp
+FHESORTSRCS = $(FHESRCS) FHESort.cpp FHEComp.cpp
+FHETESTSRCS = $(FHESRCS) FHETest.cpp
+INTSORTSRCS = IntSort.cpp IntComp.cpp
 
-fhesort: $(FHESORTSRCS)
+FHESort: $(FHESORTSRCS)
 	$(CXX) $(FHECXXFLAGS) -o $@ $(FHESORTSRCS) -lntl -lgmp -lm
 
-fhetest: $(FHETESTSRCS)
+FHETest: $(FHETESTSRCS)
 	$(CXX) $(FHECXXFLAGS) -o $@ $(FHETESTSRCS) -lntl -lgmp -lm
 
-intsort: $(INTSORTERSRCS)
+IntSort: $(INTSORTERSRCS)
 	$(CXX) $(CXXFLAGS) -o $@ $(INTSORTSRCS)
 
 HElib/src/fhe.a:

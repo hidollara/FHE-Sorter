@@ -1,7 +1,7 @@
-#include "encrypter.hpp"
-#include "fhecomp.hpp"
-#include "bitonic.hpp"
-#include "oddeven.hpp"
+#include "Encrypter.hpp"
+#include "FHEComp.hpp"
+#include "Bitonic.hpp"
+#include "OddEven.hpp"
 #include <iostream>
 
 Encrypter e;

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sorter.hpp"
+#include "Sorter.hpp"
 #include <iostream>
 
 template <class T>

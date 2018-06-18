@@ -1,6 +1,6 @@
-#include "intcomp.hpp"
-#include "bitonic.hpp"
-#include "oddeven.hpp"
+#include "IntComp.hpp"
+#include "Bitonic.hpp"
+#include "OddEven.hpp"
 #include <iostream>
 
 void run(Sorter<int> *s) {
@@ -27,4 +27,3 @@ int main() {
 
     return 0;
 }
-

@@ -1,4 +1,4 @@
-#include "encrypter.hpp"
+#include "Encrypter.hpp"
 
 Encrypter::Encrypter(
         long p, long r, long L, long c, long w, long d, long k, long s) :
