@@ -9,6 +9,7 @@ using v_itr = typename std::vector<T>::iterator;
 template <class T>
 class Comparator {
 public:
+    virtual ~Comparator() {};
     virtual std::pair<T, T> compare(const T &x, const T &y) = 0;
 };
 
@@ -16,6 +17,7 @@ template <class T>
 class Sorter {
     Comparator<T> *comparator;
 public:
+    virtual ~Sorter() {};
     Sorter(Comparator<T> *c) : comparator(c) {};
     void compare(v_itr<T> x, v_itr<T> y, bool asc = true);
     virtual void sort(v_itr<T> first, v_itr<T> last, bool asc = true) = 0;
