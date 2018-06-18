@@ -8,5 +8,5 @@ class FHEComparator : public Comparator<Ctxt> {
     Encrypter encrypter;
 public:
     FHEComparator(Encrypter e) : Comparator<Ctxt>(), encrypter(e) {}
-    std::pair<Ctxt, Ctxt> compare(const Ctxt &a, const Ctxt &b);
+    std::pair<Ctxt, Ctxt> compare(const Ctxt &a, const Ctxt &b) const;
 };

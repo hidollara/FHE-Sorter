@@ -8,7 +8,7 @@ class OddEvenSorter : public Sorter<T> {
 private:
     void merge(v_itr<T> first, v_itr<T> last, int r, bool asc);
 public:
-    OddEvenSorter(Comparator<T> *c) : Sorter<T>(c) {};
+    OddEvenSorter(const Comparator<T> *c) : Sorter<T>(c) {};
     void sort(v_itr<T> first, v_itr<T> last, bool asc);
 };
 
