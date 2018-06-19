@@ -8,6 +8,7 @@ Encrypter::Encrypter(
 {
     buildModChain(context, L, c);
     secretKey.GenSecKey(w);
+    addSome1DMatrices(secretKey);
 }
 
 const FHEcontext& Encrypter::getContext() const {

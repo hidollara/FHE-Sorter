@@ -4,6 +4,7 @@
 
 class Encrypter {
     FHEcontext context;
+protected:
     FHESecKey secretKey;
     const FHEPubKey& publicKey;
 public:
