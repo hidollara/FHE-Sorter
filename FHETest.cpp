@@ -1,4 +1,4 @@
-#include "encrypter.hpp"
+#include "Encrypter.hpp"
 
 int main() {
     std::cout << "Initialize Encrypter..." << std::endl;

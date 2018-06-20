@@ -1,4 +1,4 @@
-#include "fhecomp.hpp"
+#include "FHEComp.hpp"
 
 std::pair<Ctxt, Ctxt> FHEComparator::compare(const Ctxt &a, const Ctxt &b) const {
     // eq := a ^ b ^ 1 = a + b + 1 (mod 2)

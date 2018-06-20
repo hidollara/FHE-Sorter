@@ -1,4 +1,4 @@
-#include "encrypter.hpp"
+#include "Encrypter.hpp"
 
 Encrypter::Encrypter(
         long p, long r, long L, long c, long w, long d, long k, long s) :
@@ -8,9 +8,14 @@ Encrypter::Encrypter(
 {
     buildModChain(context, L, c);
     secretKey.GenSecKey(w);
+    addSome1DMatrices(secretKey);
 }
 
-ZZX Encrypter::getG() const {
+const FHEcontext& Encrypter::getContext() const {
+    return context;
+}
+
+const ZZX Encrypter::getG() const {
     return context.alMod.getFactorsOverZZ()[0];
 }
 
@@ -20,7 +25,7 @@ Ctxt Encrypter::encrypt(int p) const {
     return ctx;
 }
 
-NTL::ZZ Encrypter::decrypt(Ctxt ct) const {
+ZZ Encrypter::decrypt(Ctxt ct) const {
     ZZX pt;
     secretKey.Decrypt(pt, ct);
     return pt[0];

@@ -1,8 +1,8 @@
 #pragma once
 
 #include "HElib/src/FHE.h"
-#include "encrypter.hpp"
-#include "sorter.hpp"
+#include "Encrypter.hpp"
+#include "Sorter.hpp"
 
 class FHEComparator : public Comparator<Ctxt> {
     const Encrypter &encrypter;
