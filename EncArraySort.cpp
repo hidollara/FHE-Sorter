@@ -4,12 +4,14 @@
 #include "OddEven.hpp"
 #include <iostream>
 
-EncArrayEncrypter e;
+EncArrayEncrypter e(2);
 
 void run(Sorter<Ctxt> *s) {
     std::vector<Ctxt> v{
-        e.encrypt(9),
-        e.encrypt(10),
+        e.encrypt(2),
+        e.encrypt(0),
+        e.encrypt(1),
+        e.encrypt(3),
     };
 
     for (auto x : v) std::cout << e.decrypt(x) << ' ';

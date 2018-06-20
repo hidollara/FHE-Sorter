@@ -60,7 +60,7 @@ std::pair<Ctxt, Ctxt> EncArrayComparator::compare(const Ctxt &a, const Ctxt &b) 
      *      k = 6, beqs = 10000000, tmp = 10000000, lt = 10000000
      *      k = 7, beqs = 00000000, tmp = 00000000, lt = 10000000
      */
-    for (int k = 1; k < BIT_WIDTH; k++) {
+    for (int k = 1; k < encrypter.l; k++) {
         beqs.multiplyBy(beq); encrypter.ea.shift(beq, -1);
         encrypter.ea.shift(blt, -1); Ctxt tmp = blt; tmp.multiplyBy(beqs);
         Ctxt tmplt = lt; lt += tmp; tmp.multiplyBy(tmplt); lt += tmp;

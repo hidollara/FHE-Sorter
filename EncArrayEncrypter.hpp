@@ -3,12 +3,11 @@
 #include "Encrypter.hpp"
 #include "HElib/src/EncryptedArray.h"
 
-#define BIT_WIDTH 8
-
 class EncArrayEncrypter : public Encrypter {
 public:
+    const int l;
     const EncryptedArray ea;
-    EncArrayEncrypter() : Encrypter(), ea(getContext(), getG()) {}
+    EncArrayEncrypter(int l) : Encrypter(), ea(getContext(), getG()), l(l) {}
     Ctxt getMSBTrue() const;
     Ctxt getTrue() const;
     Ctxt getFalse() const;
