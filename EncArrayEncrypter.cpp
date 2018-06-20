@@ -1,5 +1,20 @@
 #include "EncArrayEncrypter.hpp"
 
+Ctxt EncArrayEncrypter::getMSBTrue() const {
+    static Ctxt ret = encrypt(1 << (BIT_WIDTH - 1));
+    return ret;
+}
+
+Ctxt EncArrayEncrypter::getTrue() const {
+    static Ctxt ret = encrypt((1 << BIT_WIDTH) - 1);
+    return ret;
+}
+
+Ctxt EncArrayEncrypter::getFalse() const {
+    static Ctxt ret = encrypt(0);
+    return ret;
+}
+
 Ctxt EncArrayEncrypter::encrypt(int p) const {
     std::vector<long> pt(BIT_WIDTH);
 
@@ -13,7 +28,7 @@ Ctxt EncArrayEncrypter::encrypt(int p) const {
     return ct;
 }
 
-ZZX EncArrayEncrypter::decrypt(Ctxt ct) const {
+ZZ EncArrayEncrypter::decrypt(Ctxt ct) const {
     std::vector<long> pt(BIT_WIDTH);
     ea.decrypt(ct, secretKey, pt);
 
@@ -22,5 +37,5 @@ ZZX EncArrayEncrypter::decrypt(Ctxt ct) const {
     // decode little endian to int
     for (int i = 0; i < BIT_WIDTH; i++) { p <<= 1;  p += pt[i]; }
 
-    return ZZX(p);
+    return to_ZZ(p);
 }

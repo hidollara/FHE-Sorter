@@ -25,8 +25,8 @@ Ctxt Encrypter::encrypt(int p) const {
     return ctx;
 }
 
-ZZX Encrypter::decrypt(Ctxt ct) const {
+ZZ Encrypter::decrypt(Ctxt ct) const {
     ZZX pt;
     secretKey.Decrypt(pt, ct);
-    return pt;
+    return pt[0];
 }

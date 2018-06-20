@@ -9,6 +9,9 @@ class EncArrayEncrypter : public Encrypter {
 public:
     const EncryptedArray ea;
     EncArrayEncrypter() : Encrypter(), ea(getContext(), getG()) {}
+    Ctxt getMSBTrue() const;
+    Ctxt getTrue() const;
+    Ctxt getFalse() const;
     Ctxt encrypt(int p) const;
-    ZZX decrypt(Ctxt ct) const;
+    ZZ decrypt(Ctxt ct) const;
 };
