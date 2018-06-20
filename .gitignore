@@ -1,4 +1,8 @@
 /IntSort
 /FHETest
 /FHESort
+/FHESort-*
 /EncArrayTest
+/EncArrayTest-*
+/EncArraySort
+/EncArraySort-*
